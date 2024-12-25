@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Instructions.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="problem-set-2-constraint-satisfaction--games">Problem Set 2: Constraint Satisfaction &amp; Games</h1>
+<p>The goal of this problem set is to implement and get familiar with CSP and adversarial search algorithms.</p>
+<p>To run the autograder, type the following command in the terminal:</p>
+<pre><code>python autograder.py
+</code></pre>
+<p>If you wish to run a certain problem only (e.g. problem 1), type:</p>
+<pre><code>python autograder.py -q 1
+</code></pre>
+<p>where 1 is the number of the problem you wish to run.</p>
+<p>You can also specify a single testcase only (e.g. testcase01.json in problem 1) by typing:</p>
+<pre><code>python autograder.py -q 1/testcase01.json
+</code></pre>
+<p>To debug your code through the autograder, you should disable the timeout functionality. This can be done via the <code>debug</code> flag as follow:</p>
+<pre><code>python autograder.py -d -q 1/testcase01.json
+</code></pre>
+<p>Or you could set a time scale to increase or decrease your time limit. For example, to half your time limits, type:</p>
+<pre><code>python autograder.py -t 0.5 -q 1/testcase01.json
+</code></pre>
+<p><strong>Note:</strong> Your machine may be faster or slower than the grading device. To automatically detect your machine's speed, the autograder will run <code>speed_test.py</code> to measure your machine relative speed, then it will scale the time limits automatically. The speed test result is automatically stored in <code>time_config.json</code> to avoid running the speed test every time you run the autograder. If you want to re-calculate your machine's speed, you can do so by either running <code>speed_test.py</code>, or deleting <code>time_config.json</code> followed by running the autograder.</p>
+<h2 id="instructions">Instructions</h2>
+<p>In the attached python files, you will find locations marked with:</p>
+<pre><code>#TODO: ADD YOUR CODE HERE
+utils.NotImplemented()
+</code></pre>
+<p>Remove the <code>utils.NotImplemented()</code> call and write your solution to the problem. <strong>DO NOT MODIFY ANY OTHER CODE</strong>; The grading of the assignment will be automated and any code written outside the assigned locations will not be included during the grading process.</p>
+<p><strong>IMPORTANT</strong>: In this problem set, you must document your code (explain the algorithm you are implementing in your own words within the code) to get the full grade. Undocumented code will be penalized. Imagine that you are in a discussion, and that your documentation are answers to all the questions that you could be asked about your implementation (e.g. why choose something as a data structure, what purpose does conditions on <code>if</code>, <code>while</code> and <code>for</code> blocks serve, etc.).</p>
+<p><strong>IMPORTANT</strong>: For this assignment, you can only use the <strong>Built-in Python Modules</strong>. Do not use external libraries such as <code>Numpy</code>, <code>Scipy</code>, etc. You can check if a module is builtin or not by looking up <a href="https://docs.python.org/3/library/">The Python Standard Library</a> page. The usage of external libraries will be heavily penalized.</p>
+<h2 id="problem-set-file-structure">Problem Set File Structure</h2>
+<p>There are 6 files that you can run from the terminal:</p>
+<ul>
+<li><code>play_sudoku.py</code>: where you can play a sudoku puzzle or let the solver play it. This is useful for debugging. Further information on the arguments is provided below.</li>
+<li><code>play_cryptarithmetic.py</code>: where you can play a cryptarithmetic puzzle or let the solver play it. This is useful for debugging. This is useful for debugging. Further information on the arguments is provided below.</li>
+<li><code>play_tree.py</code>: where you can play a tree game or let an agent play it. This is useful for debugging. This is useful for debugging. Further information on the arguments is provided below.</li>
+<li><code>play_dungeon.py</code>: where you can play a dunegon level or let an agent play it. This is useful for debugging. This is useful for debugging. Further information on the arguments is provided below.</li>
+<li><code>autograder.py</code>: where you test your code and get feedback about your results for the test cases.</li>
+<li><code>speed_test.py</code>: where you can check your computer's speed, which is useful to predict how long your code will take to run on the grading machine.</li>
+</ul>
+<p>For Part 1 (CSP), these are the files relevant to the requirements:</p>
+<ul>
+<li><code>CSP.py</code> <strong>[IMPORTANT]</strong>: This is where the generic CSP problem and the constraints are defined. You should understand the code written in it.</li>
+<li><code>sudoku.py</code>: This is where the sudoku problem is defined. You should not need to understand it to finish the requirements, since your code should work for any CSP problem in general as defined in <code>CSP.py</code>.</li>
+<li><code>CSP_solver.py</code> <strong>[IMPORTANT + REQUIREMENT]</strong>: This is where you should write the code for the requirements 1 to 3.</li>
+<li><code>cryptarithmetic.py</code> <strong>[IMPORTANT + REQUIREMENT]</strong>: This is where the cryptarithmetic puzzle problem is defined. This is where you should write the code for the requirement 4.</li>
+</ul>
+<p>For Part 2 (Games), these are the files relevant to the requirements:</p>
+<ul>
+<li><code>mathutils.py</code> <strong>[IMPORTANT]</strong>: This contains some useful math utilities that are used in the game. You should understand how to use the classes and functions written in it.</li>
+<li><code>game.py</code> <strong>[IMPORTANT]</strong>: This is where the generic game is defined. You should understand the code written in it.</li>
+<li><code>agents.py</code> <strong>[IMPORTANT]</strong>: This is where game agents are defined. It is recommended that you understand the code written in it.</li>
+<li><code>tree.py</code>: This is where the tree game is defined. You should not need to understand it to finish the requirements, since your code should work for any game in general as defined in <code>game.py</code>.</li>
+<li><code>dungeon.py</code>: This is where the dungeon game is defined. You should not need to understand it to finish the requirements, since your code should work for any game in general as defined in <code>game.py</code>.</li>
+<li><code>search.py</code> <strong>[IMPORTANT + REQUIREMENT]</strong>: This is where you should write the code for the requirements in Part 2.</li>
+</ul>
+<p>There are some files defined in the folder <code>helpers</code> that are used for testing. You should not need to understand how to use them, but it won't harm to know the following information about them:</p>
+<ul>
+<li><code>globals.py</code>: This only contains some imports that should be seen by all the testing code, so they are defined here to be imported in <code>autograder.py</code>.</li>
+<li><code>mt19937.py</code>: This is a pseudo-random number generator. We define our own instead of use the builtin <code>random</code> module to ensure that the results are reproduceable regardless of the Python version.</li>
+<li><code>pruned_tree.py</code>: This contains some utility functions to print the pruned tree onto the console.</li>
+<li><code>test_tools.py</code>: This is where most of the testing code lies. It has pairs of functions <code>run_*</code> and <code>compare_*</code> to run and check the results of different functions in the requirements. It is relatively complex, and error messages may point you towards this file, if your code returns something wrong that also leads the testing code to crash.</li>
+<li><code>utils.py</code>: This contains some classes and functions that are used by <code>autograder.py</code> and <code>test_tools.py</code>. This is where the <code>load_function</code> lies which is used to dynamically load your solutions from their python files at runtime without using <code>import</code>. This ensures that having an error in one file does not stop the autograder from grading the other files.</li>
+</ul>
+<hr>
+<h1 id="part-1-constraint-satisfaction">Part 1: Constraint Satisfaction</h1>
+<h2 id="problem-definitions">Problem Definitions</h2>
+<p>There are two problems in this part of the problem set: one is Sudoku which is already provided to you, and the other is cryptarithmetic puzzle which you will be required to complete in requirement 4.</p>
+<h3 id="sudoku">Sudoku</h3>
+<p>This is a single-player game where you are given a square grid of size <code>NxN</code> where every cell should contain a number in the range <code>[1, N]</code>. The grid is divided into <code>N</code> non-overlapping square subgrids where each subgrid has an area <code>N</code>. Usually, the puzzle will contain some cells which contain fixed values, called clues, and you must fill the rest of the grid such that the value within each cell is unique relative to its row, column and subgrid. If you want to read more about Sudoku, you can look at the game's wikipedia page: <a href="https://en.wikipedia.org/wiki/Sudoku">https://en.wikipedia.org/wiki/Sudoku</a>.</p>
+<p>You can play a sudoku game by running:</p>
+<pre><code>python play_sudoku.py sudoku\sudoku_9x9_2.txt
+</code></pre>
+<p>You can also let the &quot;backtracking search&quot; agent play the game in your place as follows:</p>
+<pre><code>python play_sudoku.py sudoku\sudoku_9x9_2.txt -a backtrack
+</code></pre>
+<h3 id="cryptarithmetic-puzzle">Cryptarithmetic Puzzle</h3>
+<p>Given an equation in the form <code>String1 + String2 = String3</code> where String1, String2 and String3 are strings of uppercase letters. The goal is to find a number to assign for each letter such that:</p>
+<ul>
+<li>Each letter is assigned a unique number (no two letters are assigned the same number).</li>
+<li>The first letter in each string cannot be 0.</li>
+<li>When each letter in the equation <code>String1 + String2 = String3</code> is replaced by the number assigned to it, the equation holds true.</li>
+</ul>
+<p>For example, given the puzzle <code>GO + TO = OUT</code>, a possible solution is: <code>G = 8, O = 1, T = 2, U = 0</code>. This is a valid solution since no two letters are assigned the same number, the letters <code>G</code>, <code>T</code> and <code>O</code>, which are the first letters in <code>GO</code>, <code>TO</code> &amp; <code>OUT</code> respectively, are not assigned zero, and <code>81 + 21 = 102</code> (the equation holds true).</p>
+<p>After you finish requirement 4, you can play a cryptarithmetic puzzle game by running:</p>
+<pre><code>python play_cryptarithmetic.py puzzles\puzzle_1.txt
+</code></pre>
+<p>You can also let the &quot;backtracking search&quot; agent play the game in your place as follows:</p>
+<pre><code>python play_cryptarithmetic.py puzzles\puzzle_1.txt -a backtrack
+</code></pre>
+<hr>
+<p>Before you start, take a look at the functions <code>one_consistency</code> and <code>minimum_remaining_values</code> which are defined in <code>CSP_solver.py</code>. The function <code>one_consistency</code> applies removes all the unary constraints from the problems by removing values that are inconsistent with them from the domains. The function <code>minimum_remaining_values</code> returns the variable with the smallest domain. Both of these functions are important for requirement 3.</p>
+<h2 id="problem-1-forward-checking">Problem 1: Forward Checking</h2>
+<p>Inside <code>CSP_solver.py</code>, modify the function <code>forward_checking</code> to implement Forward Checking. Given the problem, the variable to be assigned, its assigned value and the domains of the unassigned values, this function should return <code>False</code> if it is impossible to solve the problem after the given assignment, and <code>True</code> otherwise. In general, the function should do the following:</p>
+<ul>
+<li>For each binary constraint that involve the assigned variable:
+<ul>
+<li>Get the other involved variable.</li>
+<li>If the other variable has no domain (in other words, it is already assigned a value), skip this constraint.</li>
+<li>Update the other variable's domain to only include the values that satisfy the binary constraint with the assigned variable.</li>
+</ul>
+</li>
+<li>If any variable's domain becomes empty, return <code>False</code>. Otherwise, return <code>True</code>.</li>
+</ul>
+<h2 id="problem-2-least-restraining-value">Problem 2: Least Restraining Value</h2>
+<p>Inside <code>CSP_solver.py</code>, modify the function <code>least_restraining_values</code> to implement the &quot;Least Restraining Value&quot; heuristic. Generally, this function is very similar to the forward checking function, but it differs as follows:</p>
+<ul>
+<li>You are not given a value for the given variable, since you should do the process for every value in the variable's domain to see how much it will restrain the neigbours domain.</li>
+<li>Here, you do not modify the given domains. But you can create and modify a copy.</li>
+</ul>
+<h2 id="problem-3-backtracking-search">Problem 3: Backtracking Search</h2>
+<p>Inside <code>CSP_solver.py</code>, modify the function <code>solve</code> to implement the Backtracking Search algorithm with forward checking. The variable ordering should be decided by the MRV heuristic. The value ordering should be decided by the &quot;least restraining value&quot; heuristic. Unary constraints should be handled using 1-Consistency before starting the backtracking search. This function should return the first solution it finds (a complete assignment that satisfies the problem constraints). If no solution was found, it should return <code>None</code>.</p>
+<p>The autograder will track the calls to <code>problem.is_complete</code> to check the pruning (forward checking) and compare with the expected output.To get the correct result for the explored nodes, you should check if that assignment is complete <strong>ONLY ONCE</strong> using <code>problem.is_complete</code> for every assignment including the initial empty assignment, <strong>EXCEPT</strong> for the assignments pruned by the forward checking. Also, if 1-Consistency deems the problem unsolvable, you shouldn't call <code>problem.is_complete</code> at all.</p>
+<h2 id="problem-4-cryptarithmetic-problem">Problem 4: Cryptarithmetic problem</h2>
+<p>In <code>cryptarithmetic.py</code>, you will find the static method <code>CryptArithmeticProblem.from_text</code> which takes a cryptarithmetic puzzle as a string, and returns an instance of <code>CryptArithmeticProblem</code>. You will find that given code already parses the string and extracts the two terms from the left-hand side and the one term from the right hand-side. Your task is to create the list of variables, the list of constraints and the dictionary mapping each variable to its domain. You can make the following assumptions:</p>
+<ul>
+<li>The puzzle will always be in the form <code>LHS0 + LHS1 = RHS</code> where <code>LHS0</code>, <code>LHS1</code> and <code>RHS</code> can be any strings contains upper-case letters.</li>
+<li><code>len(RHS) &gt;= max(len(LHS0), len(LHS1))</code></li>
+</ul>
+<p><strong>IMPORTANT NOTE</strong>: You can only add unary and binary constraints. So, you are allowed to add auxiliary variables to solve this problem. But make sure that there is a variable for each letter in the puzzle. So if you combine the letters <code>A</code> and <code>B</code> into an auxiliary variable <code>AB</code>, you still have to include <code>A</code> and <code>B</code> in your variables list. Also, make sure your variables are in upper case (e.g X not x). That's because play_cryptarithmetic.py converts the variables to upper case.</p>
+<hr>
+<h1 id="part-2-games">Part 2: Games</h1>
+<h2 id="problem-definitions">Problem Definitions</h2>
+<p>There are two problems defined in this part of the problem set:</p>
+<ol>
+<li><strong>Tree Problem</strong>: where the environment is a tree where the states are nodes, and the actions are edges to the children states. The problem definition is implemented in <code>tree.py</code> and the problem instances are included in the <code>trees</code> folder.</li>
+<li><strong>Dungeon Crawling</strong>: where the environment is a 2D grid in which the player <code>'@'</code> has to find a key <code>'K'</code> then reach the exit door <code>'E'</code>. The dungeon contains monsters <code>'M'</code> which will kill the player and the player can collect daggers <code>'~'</code> to kill monsters. When the player and a monster meet in the same tile, if the player has a dagger, it will kill the monster, otherwise the monster kills the player. A dagger can only be used once. The player can also collect coins <code>'$'</code> but they are not essential to win the game. Both the player and the monsters cannot stand in a wall tile <code>'#'</code> so they have to find a path that consists of empty tiles <code>'.'</code>. In addition, no more than one monster can stand on the same tile. The problem definition is implemented in <code>dungeon.py</code> and the problem instances are included in the <code>dungeons</code> folder.</li>
+</ol>
+<p>You can play a tree or a dungeon scavenging game by running:</p>
+<pre><code># For playing a tree (e.g. tree1.json)  
+python play_tree.py trees\tree1.json
+
+# For playing a dungeon (e.g. dungeon1.txt)  
+python play_dungeon.py dungeons\dungeon1.txt
+</code></pre>
+<p>You can also let a search agent play the game in your place (e.g. a Minimax Agent) as follow:</p>
+<pre><code>python play_dungeon.py dungeons\dungeon1.txt -a minimax
+</code></pre>
+<p>For trees, you have to specify the 2nd player (adversary) too:</p>
+<pre><code>python play_tree.py trees\tree1.json -a minimax -adv random
+</code></pre>
+<p>The agent options are:</p>
+<ul>
+<li><code>human</code> where the human play via the console</li>
+<li><code>random</code> where the computer plays randomly</li>
+<li><code>greedy</code> where the computer greedly selects the action that increases the heuristic value (1-step look-ahead).</li>
+<li><code>minimax</code> where the computer uses Minimax search to select the action.</li>
+<li><code>alphabeta</code> where the computer uses Alpha-beta pruning to select the action.</li>
+<li><code>alphabeta_order</code> where the computer uses Alpha-beta pruning with move ordering to select the action.</li>
+<li><code>expectimax</code> where the computer uses Expectimax search to select the action.</li>
+</ul>
+<p>To get detailed help messages, run <code>play_dungeon.py</code> and <code>play_tree.py</code> with the <code>-h</code> flag.</p>
+<hr>
+<h2 id="important-notes">Important Notes</h2>
+<p>The autograder will track the calls to <code>game.is_terminal</code> to check the pruning and compare with the expected output. Therefore, <strong>ONLY CALL</strong> <code>game.is_terminal</code> <strong>once on each unpruned node in the game tree</strong> in all algorithms. During expansion, make sure to loop over the actions in same order as returned by <code>game.get_actions</code> except in <code>alphabeta_with_move_ordering</code>. If two actions have the same value, pick the action that appears first in the <code>game.get_actions</code>.</p>
+<hr>
+<h2 id="problem-5-minimax-search">Problem 5: Minimax Search</h2>
+<p>Inside <code>search.py</code>, modify the function <code>minimax</code> to implement Minimax search. The return value is a tuple containing the expected value of the game tree and the best action based on the algorithm. If the given state is terminal, the returned action should be <code>None</code>.</p>
+<h2 id="problem-6-alpha-beta-pruning">Problem 6: Alpha Beta Pruning</h2>
+<p>Inside <code>search.py</code>, modify the function <code>alphabeta</code> to implement Alpha Beta pruning. The return value is a tuple containing the expected value of the game tree and the best action based on the algorithm. If the given state is terminal, the returned action should be <code>None</code>.</p>
+<h2 id="problem-7-alpha-beta-pruning-with-move-ordering">Problem 7: Alpha Beta Pruning with Move Ordering</h2>
+<p>Inside <code>search.py</code>, modify the function <code>alphabeta_with_move_ordering</code> to implement Alpha Beta pruning with move ordering. The return value is a tuple containing the expected value of the game tree and the best action based on the algorithm. If the given state is terminal, the returned action should be <code>None</code>.</p>
+<p><strong>IMPORTANT NOTE:</strong> If two children have the same heuristic value, they should be explored in the same order as they were in the original order. In other words, the sorting must be stable.</p>
+<h2 id="problem-8-expectimax-search">Problem 8: Expectimax Search</h2>
+<p>Inside <code>search.py</code>, modify the function <code>expectimax</code> to implement Minimax search. The return value is a tuple containing the expected value of the game tree and the best action based on the algorithm. If the given state is terminal, the returned action should be <code>None</code>.</p>
+<p><strong>IMPORTANT NOTE:</strong> For the chance nodes, assume that all the children have the same probability. In other words, the probability of a child is 1 / (the number of children).</p>
+<h2 id="delivery">Delivery</h2>
+<p><strong>IMPORTANT</strong>: You must fill the <strong><code>student_info.json</code></strong> file since it will be used to identify you as the owner of this work. The most important field is the <strong>id</strong> which will be used by the automatic grader to identify you. You also must compress the solved python files and the <strong><code>student_info.json</code></strong> file together in a <strong>zip</strong> archive so that the autograder can associate your solution files with the correct <strong><code>student_info.json</code></strong> file. Failure to abide by these requirements will lead to a zero since your submission will not be graded.</p>
+<p>For this assignment, you should submit the following files only:</p>
+<ul>
+<li><code>student_info.json</code></li>
+<li><code>CSP_solver.py</code></li>
+<li><code>cryptarithmetic.py</code></li>
+<li><code>search.py</code></li>
+</ul>
+<p>Put these files in a compressed zip file named <code>solution.zip</code> which you should submit to Google Classroom.</p>
+<p>The delivery deadline is <code>Sunday December 1st 2024 23:59</code>. It should be delivered on <strong>Google Classroom</strong>. This is an individual assignment. The delivered code should be solely written by the student who delivered it. Any evidence of plagiarism will lead to receiving <strong>zero</strong> points.</p>
+
+</body>
+</html>

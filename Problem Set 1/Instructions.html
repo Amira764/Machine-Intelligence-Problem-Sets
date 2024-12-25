@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Instructions.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="problem-set-1-search">Problem Set 1: Search</h1>
+<p>The goal of this problem set is to implement and get familiar with search algorithms.</p>
+<p>To run the autograder, type the following command in the terminal:</p>
+<pre><code>python autograder.py
+</code></pre>
+<p>If you wish to run a certain problem only (e.g. problem 1), type:</p>
+<pre><code>python autograder.py -q 1
+</code></pre>
+<p>where 1 is the number of the problem you wish to run.</p>
+<h2 id="instructions">Instructions</h2>
+<p>In the attached python files, you will find locations marked with:</p>
+<pre><code>#TODO: ADD YOUR CODE HERE
+utils.NotImplemented()
+</code></pre>
+<p>Remove the <code>utils.NotImplemented()</code> call and write your solution to the problem. <strong>DO NOT MODIFY ANY OTHER CODE</strong>; The grading of the assignment will be automated and any code written outside the assigned locations will not be included during the grading process.</p>
+<p><strong>IMPORTANT</strong>: Starting from this problem set, you must document your code (explain the algorithm you are implementing in your own words within the code) to get the full grade. Undocumented code will be penalized. Imagine that you are in a discussion, and that your documentation are answers to all the questions that you could be asked about your implementation (e.g. why choose something as a data structure, what purpose does conditions on <code>if</code>, <code>while</code> and <code>for</code> blocks serve, etc.).</p>
+<p><strong>IMPORTANT</strong>: For this assignment, you can only use the <strong>Built-in Python Modules</strong>. Do not use external libraries such as <code>Numpy</code>, <code>Scipy</code>, etc. You can check if a module is builtin or not by looking up <a href="https://docs.python.org/3/library/">The Python Standard Library</a> page.</p>
+<p><strong>IMPORTANT</strong>: You must fill the <strong><code>student_info.json</code></strong> file since it will be used to identify you as the owner of this work. The most important field is the <strong>id</strong> which will be used by the automatic grader to identify you.</p>
+<p>Due to some problems with the autograder in the previous problem set, a &quot;grade&quot; key was added in the <code>student_info.json</code> file. This key will not affect your actual grade, however it will show us that you have indeed ran the autograder without any problems. If you face any problems with the autograder, please contact us.</p>
+<p>For this assignment, you should submit the following files only:</p>
+<ul>
+<li><code>student_info.json</code></li>
+<li><code>parking.py</code></li>
+<li><code>search.py</code></li>
+<li><code>dungeon_heuristic.py</code></li>
+</ul>
+<p>Put the files in a compressed zip file named <code>solution.zip</code> which you should submit to Google Classroom.</p>
+<hr>
+<h2 id="problem-definitions">Problem Definitions</h2>
+<p>There are two problems defined in this problem set:</p>
+<ol>
+<li><strong>Graph Routing</strong>: where the environment is a graph and the task is to travel through the nodes via edges to reach the goal node. The problem definition is implemented in <code>graph.py</code> and the problem instances are included in the <code>graphs</code> folder.</li>
+<li><strong>Dungeon Scavenging</strong>: where the environment is a 2D grid where the player <code>'@'</code> has to collect all the coins <code>'$'</code> and reach the exit <code>'E'</code>. The player cannot stand in a wall tile <code>'#'</code> so they have a find a path that consists of empty tiles <code>'.'</code>. The problem definition is implemented in <code>dungeon.py</code> and the problem instances are included in the <code>dungeons</code> folder.</li>
+</ol>
+<p>You can play a graph routing or a dungeon scavenging game by running:</p>
+<pre><code># For playing a dungeon (e.g. dungeon1.txt)  
+python play_dungeon.py dungeons\dungeon1.txt
+
+# For playing a graph (e.g. graph1.json)  
+python play_graph.py graphs\graph1.json
+</code></pre>
+<p>You can also let a search agent play the game in your place (e.g. a Breadth First Search Agent) as follow:</p>
+<pre><code>python play_dungeon.py dungeons\dungeon1.txt -a bfs
+python play_graph.py graphs\graph1.json -a bfs
+</code></pre>
+<p>The agent search options are:</p>
+<ul>
+<li><code>bfs</code> for Breadth First Search</li>
+<li><code>dfs</code> for Depth First Search</li>
+<li><code>ucs</code> for Uniform Cost Search</li>
+<li><code>astar</code> for A* Search</li>
+<li><code>gbfs</code> for Greedy Best First Search</li>
+</ul>
+<p>If you are running the dungeon game with an informed search algorithm, you can select the heuristic via the <code>-hf</code> option which can be:</p>
+<ul>
+<li><code>zero</code> where <code>h(s) = 0</code></li>
+<li><code>weak</code> to use the <code>weak_heuristic</code> implemented in <code>dungeon_heuristic.py</code>.</li>
+<li><code>strong</code> to use the <code>strong_heuristic</code> which you should implement in <code>dungeon_heuristic.py</code> for problem 6.</li>
+</ul>
+<p>You can also use the <code>--checks</code> to enable checking for heuristic consistency.</p>
+<p>To get detailed help messages, run <code>play_dungeon.py</code> and <code>play_graph.py</code> with the <code>-h</code> flag.</p>
+<hr>
+<h2 id="important-notes">Important Notes</h2>
+<p>The autograder will track the calls to <code>problem.is_goal</code> to check the traversal order and compare with the expected output. Therefore, <strong>ONLY CALL</strong> <code>problem.is_goal</code> <strong>when a node is retrieved from the frontier</strong> in all algorithms. During expansion, make sure to loop over the actions in same order as returned by <code>problem.get_actions</code>. The expected results in the test cases cover two possibilities only: the actions are processed either from first to last or from last to first (to take into consideration whether depth first search is implemented via a stack or via recursion).</p>
+<hr>
+<h2 id="problem-1-problem-implementation">Problem 1: Problem Implementation</h2>
+<p>As a software engineer in the world's best car company, you and your colleagues take too much pride in your personal cars. Each employee gets a dedicated parking slot, where only their car can be parked. One day, a saboteur scrambles your cars around, and every car was left somewhere in the passage ways. All the employees left their offices, and are trying to return their car to its parking slot, but without planning, the process is taking forever. To save the company's precious time and money, you propose building an AI agent that would find the optimal sequence of actions to solve the problem. But, first you have to formulate and implement the problem, so you collect the following notes:</p>
+<ol>
+<li>In each step, only one car can move, and it can only move to one of the four adjacent cells (Left, Right, Down, Up) if it is vacant (is not a wall and does not contain another car).</li>
+<li>Each car has one (and only one) dedicated parking slot.</li>
+<li>Each action costs <code>1</code>. However, your colleagues hate it when another car passes over their parking slot. So any action that moves a car into another car's parking slot, the action cost goes up by <code>100</code> to become <code>101</code> instead of <code>1</code>.</li>
+<li>The goal is to have each car into its own parking slot.</li>
+</ol>
+<p>The following map shows an example of a parking slot:</p>
+<pre><code>#########
+#1A...B0#
+####.####
+#########
+</code></pre>
+<p>There are two cars (<code>A</code> and <code>B</code>) where the parking slot of car <code>A</code> is denoted by <code>0</code>, and the parking slot of car <code>B</code> is denoted by <code>1</code>. In general, each car will denoted by an letter, and each parking slot will be denoted by the index of its car's letter in the english alphabet (<code>A -&gt; 0</code>, <code>B -&gt; 1</code>, <code>C -&gt; 2</code> and so on). Walls are denoted by <code>#</code>. One solution to this map is to move car <code>A</code> using the sequence <code>[RIGHT, RIGHT, DOWN]</code> so that it gets out of car <code>B</code>'s way, then car <code>B</code> would move <code>LEFT</code> 5 times till it reaches its parking slot <code>1</code>, and finally, car <code>A</code> would move <code>[UP, RIGHT, RIGHT, RIGHT]</code> till it reaches its parking slot <code>0</code>. The solution would require <code>12</code> actions where each action costs <code>1</code> (no action causes a car to enter another car's parking slot). If car <code>A</code> had moved into the parking slot <code>1</code> (by going left), such an action would cost <code>101</code> (<code>1</code> for the move and <code>100</code> for angering the owner of car <code>B</code>).</p>
+<p>Inside <code>parking.py</code>, complete the class <code>ParkingProblem</code> so that it works as described above and so that it passes its testcases.</p>
+<h2 id="problem-2-breadth-first-search">Problem 2: Breadth First Search</h2>
+<p>Inside <code>search.py</code>, modify the function <code>BreadthFirstSearch</code> to implement Breadth First Search (graph version). The return value is a list of actions that define the path from the initial state to a goal state. If no solution is found return <code>None</code>.</p>
+<h2 id="problem-3-depth-first-search">Problem 3: Depth First Search</h2>
+<p>Inside <code>search.py</code>, modify the function <code>DepthFirstSearch</code> to implement Depth First Search (graph version). The return value is a list of actions that define the path from the initial state to a goal state. If no solution is found return <code>None</code>.</p>
+<h2 id="problem-4-uniform-cost-search">Problem 4: Uniform Cost Search</h2>
+<p>Inside <code>search.py</code>, modify the function <code>UniformCostSearch</code>  to implement Uniform Cost Search. The return value is a list of actions that define the path from the initial state to a goal state. If no solution is found return <code>None</code>. When there are multiple states at the queue's front with the same <code>g(n)</code>, pick the state that was enqueued first (first in first out).</p>
+<p><strong>Hint</strong>: Python builtin modules already contain algorithms for Priority Queues which include:</p>
+<ul>
+<li><a href="https://docs.python.org/3/library/queue.html#queue.PriorityQueue">queue.PriorityQueue</a></li>
+<li><a href="https://docs.python.org/3/library/heapq.html">heapq</a></li>
+</ul>
+<h2 id="problem-5-a-search">Problem 5: A* Search</h2>
+<p>Inside <code>search.py</code>, modify the function <code>AStarSearch</code> to implement A* search. The return value is a list of actions that define the path from the initial state to a goal state. If no solution is found return <code>None</code>. When there are multiple states at the queue's front with the same <code>h(n)+g(n)</code>, pick the state that was enqueued first (first in first out).</p>
+<h2 id="problem-6-greedy-best-first-search">Problem 6: Greedy Best First Search</h2>
+<p>Inside <code>search.py</code>, modify the function <code>BestFirstSearch</code> to implement Greedy Best First search. The return value is a list of actions that define the path from the initial state to a goal state. If no solution is found return <code>None</code>. When there are multiple states at the queue's front with the same <code>h(n)</code>, pick the state that was enqueued first (first in first out).</p>
+<p><strong>HINT</strong>: Greedy Best First Search is similar to A* search except that the priority of node expansion is determined by the heuristic <code>h(n)</code> alone.</p>
+<h2 id="problem-7-heuristic-for-the-dungeon-scavenging-game">Problem 7: Heuristic for the Dungeon Scavenging Game</h2>
+<p>The requirement for this problem is to design and implement a consistent heuristic function for the Dungeon Scavenging Game. The implementation should be written in <code>strong_heuristic</code> which is in the file <code>dungeon_heuristic.py</code>.</p>
+<p>The grade will be decided based on how many nodes are expanded by the search algorithm. The less the expanded nodes, the higher the grade. However, make sure that the code is not slow. To be safe, try to write the heuristic function such that the autograder takes much less than the assigned time limit.</p>
+<h2 id="time-limit">Time Limit</h2>
+<p>In case your computer has a different speed compared to mine (which I will use for testing the submissions), you can use the following information as a reference: <code>On my computer, running speed_test.py takes ~17 seconds</code>. You can measure the run time for this operation on computer by running:</p>
+<pre><code>python speed_test.py
+</code></pre>
+<p>If your computer is too slow, you can increase the time limit in the testcases files.</p>
+<h2 id="delivery">Delivery</h2>
+<p>The delivery deadline is <code>November 3rd 2024 23:59</code>. It should be delivered on <strong>Google Classroom</strong>. This is an individual assignment. The delivered code should be solely written by the student who delivered it. Any evidence of plagiarism will lead to receiving <strong>zero</strong> points.</p>
+
+</body>
+</html>

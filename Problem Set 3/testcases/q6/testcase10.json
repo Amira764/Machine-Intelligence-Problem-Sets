@@ -1,0 +1,13 @@
+{
+    "description": "Smaller level",
+    "input_kwargs": {
+        "env": "load_function('snake.SnakeEnv')(3, 3)",
+        "trajectory": "[Direction.NONE, Direction.UP]"
+    },
+    "comparison_args": [
+        "((Point(0,0),), Direction.UP, Point(1, 0))",
+        "[0, 0]",
+        "False",
+        "[Direction.NONE, Direction.RIGHT, Direction.LEFT]"
+    ]
+}
